@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-8">
+        <h4 class="text-center display-2">
+            <%= story.title%>
+        </h4>
+
+        <div class="card">
+            <div class="card-header">
+                <p class="datepara">
+                    <%= moment(story.createAt).format('DD-MM-YYYY, h:mm:ss a')%>
+                </p>
+            </div>
+
+            <div class="card-body">
+                <p class="lead">
+                    <%= stripTag(story.body) %>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <img src="<%= user.image%>" alt="">
+        </div>
+        <div class="card-body">
+            <p class="text-center"><%= user.displayName%></p>
+            <a href="/dashboard" class="btn btn-block btn-secondary">
+                For More
+            </a>
+        </div>
+    </div>
+</div>

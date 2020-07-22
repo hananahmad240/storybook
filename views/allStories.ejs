@@ -1,0 +1,46 @@
+<h1>Stories</h1>
+
+<div class="row">
+	<% if(stories.length > 0){ %> <% stories.forEach(function(story){ %>
+
+	<div class="col-sm-4">
+		<div class="card">
+			<div class="card-image">
+				<% if(editIcon(story.user._id,USER._id,story._id)){%>
+				<a href="/stories/edit/<%= story._id%>" class="btn-floating">
+					<i class="fas fa-edit"></i>
+				</a>
+				<% }else{ %>
+				<p>ihji</p>
+				<%}%>
+			</div>
+
+			<div class="card-body">
+				<h5><%= story.title%></h5>
+				<p>
+					<%= truncate(stripTag(story.body)) %>
+				</p>
+
+				<div class="card-user">
+					<img src="<%= image %>" alt="" width="50px" height="50px" />
+					<a
+						href="/stories/user/<%= story.user._id%>"
+						class="btn sm btn-secondary"
+					>
+						<%= name %>
+					</a>
+				</div>
+			</div>
+
+			<div class="card-footer text-center">
+				<a href="/stories/<%= story._id%>" class="btn btn-dark">Read More</a>
+			</div>
+		</div>
+	</div>
+
+	<% }) %> <% }else{ %>
+
+	<p>No Stories for display</p>
+
+	<% } %>
+</div>

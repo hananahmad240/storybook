@@ -1,0 +1,44 @@
+<h6>dashbiard</h6>
+<h3>Welcome <%= name%></h3>
+<p>Here are your stories</p>
+
+<% if(story.length > 0){%>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% story.forEach(function(item){ %>
+        <tr>
+            <td>
+                <a href="/stories/<%= item._id%>">
+                    <%= item.title%>
+                </a>
+            </td>
+            <td><%= moment(item.createAt).format('DD-MM-YYYY, h:mm:ss a')%></td>
+            <td><%= item.status%></td>
+            <td>
+                <a href="/stories/edit/<%= item._id%>" class="btn btn-secondary btn-sm btn-float">
+                    <i class="fas fa-edit"></i>
+                </a>
+
+                <form action="/stories/<%= item._id%>" method="POST" id="delete-from">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger btn-sm" type="submit">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<%}else{%>
+<p class=" lead">You have not created any Stories</p>
+<%}%>
